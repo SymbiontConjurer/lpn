@@ -25,6 +25,9 @@ training:
     class: ARC
   train_datasets:
 
+wandb:
+  project: ARC-LPN
+  name: epic-training-run
 
 eval:
   eval_datasets:
