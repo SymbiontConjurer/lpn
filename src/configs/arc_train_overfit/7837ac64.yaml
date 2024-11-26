@@ -1,4 +1,4 @@
-# Run with: python src/train.py --config-path configs/arc_train_overfit --config-name ea9794b1
+# Run with: python src/train.py --config-path configs/arc_train_overfit --config-name 7837ac64
 
 training:
   seed: 0
@@ -9,7 +9,7 @@ training:
   total_num_steps: 20000
   log_every_n_steps: 20  # this has to respect dataset_size >= batch_size * log_every_n_steps
   eval_every_n_logs: 50  # null to disable eval
-  save_checkpoint_every_n_logs: null  # null to disable checkpointing
+  save_checkpoint_every_n_logs: 100  # null to disable checkpointing
   learning_rate: 4e-4
   prior_kl_coeff: 1e-4
   pairwise_kl_coeff: null
@@ -19,7 +19,7 @@ training:
     num_workers: 48
     num_pairs: 4
     class: ARC
-    overfit_task: ea9794b1
+    overfit_task: 7837ac64
   train_datasets:
 
 
