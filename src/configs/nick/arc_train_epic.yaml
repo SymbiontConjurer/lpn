@@ -66,7 +66,7 @@ eval:
           b2: 0.9
     - generator: ARC
       task_generator_kwargs:
-      name: generator_gradient_ascent_20
+      name: generator_gradient_ascent_100
       num_pairs: 4
       length: 48
       batch_size: 16
@@ -74,20 +74,6 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
-        lr: 0.1
-        optimizer: adam
-        optimizer_kwargs:
-          b2: 0.9
-    - generator: ARC
-      task_generator_kwargs:
-      name: generator_gradient_ascent_20
-      num_pairs: 4
-      length: 48
-      batch_size: 16
-      num_tasks_to_show: 48
-      inference_mode: gradient_ascent
-      inference_kwargs:
-        num_steps: 500
         lr: 0.1
         optimizer: adam
         optimizer_kwargs:
