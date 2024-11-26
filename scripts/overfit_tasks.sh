@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage: ./script.sh START_INDEX NUM_TASKS
+# Usage: bash scripts/overfit_tasks.sh START_INDEX NUM_TASKS
 
 # Check for correct number of arguments
 if [ $# -ne 2 ]; then
