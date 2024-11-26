@@ -1,7 +1,5 @@
 # Run with: python src/train.py --config-path configs/arc_train_overfit --config-name overfit-general training.task_generator.overfit_task=<task_id>
 
-wandb_project_name: ARC-LPN-MegaOverfit
-
 training:
   seed: 0
   resume_from_checkpoint: null  # null to start from scratch
@@ -24,6 +22,9 @@ training:
     overfit_task: null # Specify via command line
   train_datasets:
 
+wandb:
+  project: ARC-LPN-MegaOverfit
+  name: task-${training.task_generator.overfit_task}
 
 eval:
   eval_datasets:
