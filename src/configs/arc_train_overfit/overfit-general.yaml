@@ -1,4 +1,4 @@
-# Run with: python src/train.py --config-path configs/arc_train_overfit --config-name 7837ac64
+# Run with: python src/train.py --config-path configs/arc_train_overfit --config-name overfit-general training.task_generator.overfit_task=<task_id>
 
 training:
   seed: 0
