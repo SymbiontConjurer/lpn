@@ -1000,6 +1000,19 @@ def instantiate_config_for_mpt(
     return config
 
 
+def maybe_special_name(cfg: omegaconf.DictConfig) -> str | None:
+    overfit_task = omegaconf.OmegaConf.select(
+        cfg, "training.task_generator.overfit_task", default=None
+    )
+    if overfit_task:
+        return f"overfit-{overfit_task}"
+    return None
+
+
+def wandb_project(cfg: omegaconf.DictConfig) -> str:
+    return cfg.get("wandb_project_name", "ARC-LPN")
+
+
 @hydra.main(config_path="configs", version_base=None, config_name="task_gen")
 def run(cfg: omegaconf.DictConfig):
     logging.info("All devices available: {}".format(jax.devices()))
@@ -1017,7 +1030,8 @@ def run(cfg: omegaconf.DictConfig):
     lpn = LPN(encoder=encoder, decoder=decoder)
 
     wandb.init(
-        project="ARC-LPN",
+        project=wandb_project(cfg),
+        name=maybe_special_name(cfg),
         settings=wandb.Settings(console="redirect"),
         config=omegaconf.OmegaConf.to_container(
             cfg, resolve=True, throw_on_missing=True
