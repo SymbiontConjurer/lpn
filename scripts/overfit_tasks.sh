@@ -13,7 +13,7 @@ START_INDEX=$1
 NUM_TASKS=$2
 
 # Read tasks into an array
-mapfile -t TASKS < tasks.txt
+mapfile -t TASKS < scripts/tasks.txt
 
 TOTAL_TASKS=${#TASKS[@]}
 
