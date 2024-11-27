@@ -24,7 +24,7 @@ training:
 
 wandb:
   project: ARC-LPN-MegaOverfit
-  name: task-${training.task_generator.overfit_task}
+  name: task-${training.task_generator.overfit_task}-ga
 
 eval:
   eval_datasets:
