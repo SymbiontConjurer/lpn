@@ -36,6 +36,6 @@ fi
 for (( i=START_INDEX; i<=END_INDEX; i++ ))
 do
   TASK_ID=${TASKS[$i]}
-echo "Processing task ID: $TASK_ID ($((i - START_INDEX + 1))/$NUM_TASKS)"
+  echo -e "\e[32mProcessing task ID: $TASK_ID ($((i - START_INDEX + 1))/$NUM_TASKS)\e[0m"
   python src/train.py --config-path=configs/nick --config-name=overfit-ga training.task_generator.overfit_task="$TASK_ID"
 done
