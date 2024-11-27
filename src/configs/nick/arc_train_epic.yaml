@@ -1,7 +1,7 @@
 training:
   seed: 0
   resume_from_checkpoint: null  # null to start from scratch
-  inference_mode: mean  # mean, all, random_search, gradient_ascent
+  inference_mode: gradient_ascent  # mean, all, random_search, gradient_ascent
   inference_kwargs:
     num_steps: 1
     lr: 0.1
@@ -34,28 +34,14 @@ eval:
   test_datasets:
     - generator: ARC
       task_generator_kwargs:
-      name: generator_mean
+      name: mean
       num_pairs: 4
       length: 48
       batch_size: 16
       num_tasks_to_show: 48
     - generator: ARC
       task_generator_kwargs:
-      name: generator_gradient_ascent_1
-      num_pairs: 4
-      length: 48
-      batch_size: 16
-      num_tasks_to_show: 48
-      inference_mode: gradient_ascent
-      inference_kwargs:
-        num_steps: 1
-        lr: 0.1
-        optimizer: adam
-        optimizer_kwargs:
-          b2: 0.9
-    - generator: ARC
-      task_generator_kwargs:
-      name: generator_gradient_ascent_20
+      name: gradient_ascent_20
       num_pairs: 4
       length: 48
       batch_size: 16
@@ -69,7 +55,7 @@ eval:
           b2: 0.9
     - generator: ARC
       task_generator_kwargs:
-      name: generator_gradient_ascent_100
+      name: gradient_ascent_100
       num_pairs: 4
       length: 48
       batch_size: 16
@@ -77,6 +63,20 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
+        lr: 0.1
+        optimizer: adam
+        optimizer_kwargs:
+          b2: 0.9
+    - generator: ARC
+      task_generator_kwargs:
+      name: gradient_ascent_200
+      num_pairs: 4
+      length: 48
+      batch_size: 16
+      num_tasks_to_show: 48
+      inference_mode: gradient_ascent
+      inference_kwargs:
+        num_steps: 200
         lr: 0.1
         optimizer: adam
         optimizer_kwargs:
@@ -136,6 +136,18 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
+        lr: 0.1
+        optimizer: adam
+        optimizer_kwargs:
+          b2: 0.9
+    - challenges: json/arc-agi_evaluation_challenges.json
+      solutions: json/arc-agi_evaluation_solutions.json
+      name: gradient_ascent_200
+      only_n_tasks: 100
+      num_tasks_to_show: 50
+      inference_mode: gradient_ascent
+      inference_kwargs:
+        num_steps: 200
         lr: 0.1
         optimizer: adam
         optimizer_kwargs:
