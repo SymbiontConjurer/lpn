@@ -29,7 +29,7 @@ training:
 
 wandb:
   project: ARC-LPN
-  name: epic-training-run
+  name: full-arc-mean
 
 eval:
   eval_datasets:

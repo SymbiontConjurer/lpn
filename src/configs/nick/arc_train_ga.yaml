@@ -27,7 +27,7 @@ training:
 
 wandb:
   project: ARC-LPN
-  name: epic-training-run
+  name: full-arc-ga
 
 eval:
   eval_datasets:
