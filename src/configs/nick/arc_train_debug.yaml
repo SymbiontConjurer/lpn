@@ -35,17 +35,18 @@ eval:
   test_datasets:
     - generator: ARC
       task_generator_kwargs:
-      name: generator_mean
+      name: generator_gradient_ascent_1
       num_pairs: 4
       length: 48
       batch_size: 16
       num_tasks_to_show: 48
-  json_datasets:
-    - challenges: json/arc-agi_training_challenges.json
-      solutions: json/arc-agi_training_solutions.json
-      name: mean
-      only_n_tasks: 100
-      num_tasks_to_show: 50
+      inference_mode: gradient_ascent
+      inference_kwargs:
+        num_steps: 1
+        lr: 0.1
+        optimizer: adam
+        optimizer_kwargs:
+          b2: 0.9
 
 encoder_transformer:
   _target_: src.models.utils.EncoderTransformerConfig
