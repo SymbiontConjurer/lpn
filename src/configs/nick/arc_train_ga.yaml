@@ -8,7 +8,7 @@ training:
     optimizer: adam
     optimizer_kwargs:
       b2: 0.9
-  batch_size: 128  # this has to be divisible by gradient_accumulation_steps * num_devices
+  batch_size: 64  # this has to be divisible by gradient_accumulation_steps * num_devices
   gradient_accumulation_steps: 2  # the higher the slower but the lower memory usage while keeping effective batch size constant
   total_num_steps: 1000000
   log_every_n_steps: 100  # this has to respect dataset_size >= batch_size * log_every_n_steps
@@ -37,14 +37,14 @@ eval:
       name: mean
       num_pairs: 4
       length: 64
-      batch_size: 64 # Note: batch_size=16 fails on H100 for some strange reason
+      batch_size: 8 # Note: batch_size=16 fails on H100 for some strange reason
       num_tasks_to_show: 64
     - generator: ARC
       task_generator_kwargs:
       name: gradient_ascent_20
       num_pairs: 4
       length: 64
-      batch_size: 64
+      batch_size: 8
       num_tasks_to_show: 64
       inference_mode: gradient_ascent
       inference_kwargs:
@@ -58,7 +58,7 @@ eval:
       name: gradient_ascent_100
       num_pairs: 4
       length: 64
-      batch_size: 64
+      batch_size: 8
       num_tasks_to_show: 64
       inference_mode: gradient_ascent
       inference_kwargs:
