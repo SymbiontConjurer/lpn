@@ -30,13 +30,13 @@ wandb:
   name: full-arc-ga
 
 eval:
-  generator_config:
+  generator_config: &generator_config
     num_pairs: 4
     length: 32
     batch_size: 8 # Note: batch_size=16 fails on H100 for some strange reason
     num_tasks_to_show: 32
     task_generator_kwargs:
-  gradient_ascent_optimizer_kwargs:
+  gradient_ascent_optimizer_kwargs: &ga_opt_kwargs
     lr: 0.1
     optimizer: adam
     optimizer_kwargs:
@@ -45,21 +45,21 @@ eval:
   test_datasets:
     - generator: ARC
       name: mean
-      <<: ${eval.generator_config}
+      <<: *generator_config
     - generator: ARC
       name: gradient_ascent_20
-      <<: ${eval.generator_config}
+      <<: *generator_config
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 20
-        <<: ${eval.gradient_ascent_optimizer_kwargs}
+        <<: *ga_opt_kwargs
     - generator: ARC
       name: gradient_ascent_100
-      <<: ${eval.generator_config}
+      <<: *generator_config
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
-        <<: ${eval.gradient_ascent_optimizer_kwargs}
+        <<: *ga_opt_kwargs
   json_datasets:
     - challenges: json/arc-agi_training_challenges.json
       solutions: json/arc-agi_training_solutions.json
@@ -74,7 +74,7 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 20
-        <<: ${eval.gradient_ascent_optimizer_kwargs}
+        <<: *ga_opt_kwargs
     - challenges: json/arc-agi_training_challenges.json
       solutions: json/arc-agi_training_solutions.json
       name: gradient_ascent_100
@@ -83,7 +83,7 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
-        <<: ${eval.gradient_ascent_optimizer_kwargs}
+        <<: *ga_opt_kwargs
     - challenges: json/arc-agi_evaluation_challenges.json
       solutions: json/arc-agi_evaluation_solutions.json
       name: mean
@@ -97,7 +97,7 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 20
-        <<: ${eval.gradient_ascent_optimizer_kwargs}
+        <<: *ga_opt_kwargs
     - challenges: json/arc-agi_evaluation_challenges.json
       solutions: json/arc-agi_evaluation_solutions.json
       name: gradient_ascent_100
@@ -106,7 +106,7 @@ eval:
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
-        <<: ${eval.gradient_ascent_optimizer_kwargs}
+        <<: *ga_opt_kwargs
 
 encoder_transformer:
   _target_: src.models.utils.EncoderTransformerConfig
