@@ -27,7 +27,7 @@ training:
   train_datasets:
 
 wandb:
-  project: ARC-LPN
+  project: ARC-LPN-Debug
   name: debug
 
 eval:
