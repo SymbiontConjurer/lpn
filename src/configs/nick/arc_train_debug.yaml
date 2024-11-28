@@ -47,6 +47,8 @@ eval:
         optimizer: adam
         optimizer_kwargs:
           b2: 0.9
+  json_datasets:
+    
 
 encoder_transformer:
   _target_: src.models.utils.EncoderTransformerConfig
