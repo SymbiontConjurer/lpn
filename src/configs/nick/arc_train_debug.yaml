@@ -37,9 +37,9 @@ eval:
       task_generator_kwargs:
       name: gradient_ascent_1
       num_pairs: 4
-      length: 4
+      length: 8
       batch_size: 4
-      num_tasks_to_show: 4
+      num_tasks_to_show: 8
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 1
