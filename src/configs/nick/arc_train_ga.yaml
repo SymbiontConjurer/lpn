@@ -30,22 +30,20 @@ wandb:
   name: full-arc-ga
 
 eval:
+  generator_config:
+    num_pairs: 4
+    length: 32
+    batch_size: 8 # Note: batch_size=16 fails on H100 for some strange reason
+    num_tasks_to_show: 32
+    task_generator_kwargs:
   eval_datasets:
   test_datasets:
     - generator: ARC
-      task_generator_kwargs:
       name: mean
-      num_pairs: 4
-      length: 64
-      batch_size: 8 # Note: batch_size=16 fails on H100 for some strange reason
-      num_tasks_to_show: 64
+      ${eval.generator_config}
     - generator: ARC
-      task_generator_kwargs:
       name: gradient_ascent_20
-      num_pairs: 4
-      length: 64
-      batch_size: 8
-      num_tasks_to_show: 64
+      ${eval.generator_config}
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 20
@@ -54,12 +52,8 @@ eval:
         optimizer_kwargs:
           b2: 0.9
     - generator: ARC
-      task_generator_kwargs:
       name: gradient_ascent_100
-      num_pairs: 4
-      length: 64
-      batch_size: 8
-      num_tasks_to_show: 64
+      ${eval.generator_config}
       inference_mode: gradient_ascent
       inference_kwargs:
         num_steps: 100
