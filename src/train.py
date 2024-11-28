@@ -324,6 +324,7 @@ class Trainer:
                 default_dataset_name + "_" + dict_.get("name", f"{inference_mode}_{i}")
             )
             inference_kwargs = dict_.get("inference_kwargs", {})
+            print(f"Making test dataset {test_name} with {len(grids)} tasks.")
             self.test_datasets.append(
                 {
                     "pmap_dataset_generate_output": jax.pmap(
